@@ -48,3 +48,9 @@ ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
 
 # from a derived Dockerfile, can use `RUN plugin.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
+
+USER root
+RUN apt-get update && apt-get -y install sudo
+RUN sudo usermod -a -G sudo jenkins
+
+USER jenkins
