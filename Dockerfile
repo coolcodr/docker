@@ -51,6 +51,7 @@ COPY plugins.sh /usr/local/bin/plugins.sh
 
 USER root
 RUN apt-get update && apt-get -y install sudo
+RUN echo "jenkins:password" | chpasswd
 RUN sudo usermod -a -G sudo jenkins
 
 USER jenkins
